@@ -7,8 +7,15 @@ set SSID to do shell script "/System/Library/PrivateFrameworks/Apple80211.framew
 if SSID is "í ¼í½”í ¼í½Ÿ" then
 	tell application "Finder"
 		try
+			-- Mount Drives
 			mount volume "afp://Bruce._afpovertcp._tcp.local/TV Shows"
 			mount volume "afp://Bruce._afpovertcp._tcp.local/Downloads"
+			
+			-- Sync Downloads not already synced by the Folder Action
+			do shell script "rsync -aE --delete --remove-source-files ~/Downloads/complete/ /Volumes/Downloads/"
+			do shell script "rm -rf ~/Downloads/complete/*"
+			
+			-- Notify
 			do shell script "/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -message 'Network Drives Mounted' -title 'Bruce' -group 'Bruce'"
 		end try
 	end tell
