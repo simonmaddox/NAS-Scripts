@@ -12,7 +12,7 @@ if SSID is "í ¼í½”í ¼í½Ÿ" then
 			mount volume "afp://Bruce._afpovertcp._tcp.local/Downloads"
 			
 			-- Sync Downloads not already synced by the Folder Action
-			do shell script "rsync -aE --delete --remove-source-files ~/Downloads/complete/ /Volumes/Downloads/"
+			do shell script "rsync -aE --delete ~/Downloads/complete/ /Volumes/Downloads/"
 			do shell script "rm -rf ~/Downloads/complete/*"
 			
 			-- Notify
